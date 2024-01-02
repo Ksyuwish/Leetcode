@@ -13,11 +13,13 @@ class Solution:
 # Time complexity - O(n)
 # Memory complexity - O(1) - т.к 26 букв в англ алфавите - это константа
 class Solution:
+    def count_dict(self, s: str):
+        dic = {}
+        for l in s:
+            dic[l] = dic.get(l, 0)+1 #dic.get(l, 0) берет ключ, если нет, 0
+        return dic
+
     def isAnagram(self, s: str, t: str) -> bool:
-        def count_dict(s:str):
-            dic = {}
-            for l in s:
-                dic[l] = dic.get(l, 0)+1 #dic.get(l, 0) берет ключ, если нет, 0
-            return dic
+        if len(s) != len(t): return False
         if t==s: return True
-        return count_dict(s) == count_dict(t)
+        return self.count_dict(s) == self.count_dict(t)
