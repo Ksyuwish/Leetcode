@@ -54,4 +54,17 @@ dic.get(l, 0) берет ключ, если нет, 0. в случае, если
 
 #### Description
 
-g
+Given an array of integers nums and an integer target, return indices of the two numbers such 
+that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same 
+element twice.
+
+You can return the answer in any order.
+
+#### Naive solution: перебираем все эл-ты, суммируя их между собой
+***Time complexity***  - O(n^2)
+***Memory complexity*** - O(n)
+
+- Прописываем edge case: Если всего 2 эл-та в листе, то возвращаем индексы [0, 1]
+- Далее идем циклом по всем эл-там (2 цикла i, j) чтобы просуммировать все комбинации эл-ов
