@@ -37,3 +37,26 @@ class Solution:
         for s in strs:
             dict_anagr[get_hash(s)].append(s)
         return [item for item in dict_anagr.values()]
+
+
+# Optimal solution
+# Time complexity - O(n)
+# Memory complexity - O(n)
+#Idea: ключами являются листы (переведенные в строки) с хэштрованием юникода. Создаем словарь
+# и циклом добавляем к каждому ключу элемент из листа strs. Возвращаем values словаря
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        def count_list(s: str) -> str:
+            counter = [0]* 26
+            for l in s:
+                counter[ord(l)-ord("a")] +=1
+            return counter
+
+        res = {}
+        for s in strs:
+            key_str = ''.join(map(str, count_list(s)))
+            if key_str in res.keys():
+                res[key_str].append(s)
+            else:
+                res[key_str] = [s]
+        return res.values()
