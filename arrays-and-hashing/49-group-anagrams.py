@@ -49,14 +49,14 @@ class Solution:
         def count_list(s: str) -> str:
             counter = [0]* 26
             for l in s:
-                counter[ord(l)-ord("a")] +=1
+                counter[ord(l)-ord("a")] += 1
             return counter
 
         res = {}
         for s in strs:
-            key_str = ''.join(map(str, count_list(s)))
-            if key_str in res.keys():
-                res[key_str].append(s)
-            else:
+            key_str = ','.join(map(str, count_list(s)))
+            if key_str not in res.keys():
                 res[key_str] = [s]
+            else:
+                res[key_str].append(s)
         return res.values()
