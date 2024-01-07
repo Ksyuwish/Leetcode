@@ -1,4 +1,4 @@
-from typing import List
+#https://leetcode.com/problems/group-anagrams/
 from collections import defaultdict
 
 # Naive solution with sorting
