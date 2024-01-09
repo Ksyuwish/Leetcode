@@ -2,7 +2,7 @@
 from typing import List
 
 # Naive solution with  sorting
-# Time complexity - O(nlog(n))
+# Time complexity - O(n^2)
 # Memory complexity - O(n)
 #Idea: Создаем словарь и считаем кол-во эл-ов из листа nums. Берем значения из словаря (частоты эл-ов),
 #сортируем этот лист и берем к последних эл-ов. Если эл-ты одинаковые в листе, то сетом удаляем дубли.
@@ -26,6 +26,19 @@ class Solution:
         for i in res_val:
             final_list.extend(get_keys_from_val(dict_freq, i))
         return final_list
+
+# Time complexity - O(n*log(n))
+# Memory complexity - O(n)
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        if len(nums) == 1: return nums #edgecase
+
+        dict_freq = {}
+        for num in nums:
+            dict_freq[num] = dict_freq.get(num, 0) + 1
+        ordered_val = sorted(dict_freq.items(), key=lambda x: x[1], reverse=True)
+        return [item[0] for item in ordered_val[:k]]
+
 
 # Optimal solution Using Bucket Sort
 # Time complexity - O(n)
