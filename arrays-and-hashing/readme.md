@@ -68,3 +68,38 @@ You can return the answer in any order.
 
 - Прописываем edge case: Если всего 2 эл-та в листе, то возвращаем индексы [0, 1]
 - Далее идем циклом по всем эл-там (2 цикла i, j) чтобы просуммировать все комбинации эл-ов
+
+
+#### Optimal solution: val = target - nums[i]. Check val in nums, using dictionary (add to dictionary val:index)
+***Time complexity***  - O(n)
+***Memory complexity*** - O(n)
+
+Создаем пустой словарь и проходимся по индексам и значениям листа добавляя эл-ты в словарь 
+по следующей логике val:index. Ищем разницу: diff = target - val.
+Если diff  разница в нашем словаре, возвращаем индекс эл-та из разницы и индекс эл-та из цикла
+
+## Task 49: Group Anagrams
+
+#### Description
+
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, 
+typically using all the original letters exactly once.
+
+#### Naive solution with sorting
+***Time complexity***  - O(nlog(n))
+***Memory complexity*** - O(n)
+
+Создаем ф-ю, которая сортирует эл-ты в строке. Отсортированное знач-е мы будем использовать 
+в качестве ключа в словаре. Создаем пустой словарь и добавляем в него ключ-значение, 
+где ключ-отсортированная строка, значение - лист с эл-ами из листа strs, 
+которые относятся к данному хэшу. Если ключ есть в словаре, то мы аппендим просто эл-т 
+из листа, если ключа нет, то добавляем и новый ключ, и значение
+
+#### Optimal solution
+***Time complexity***  - O(n)
+***Memory complexity*** - O(n)
+
+Ключами являются листы (переведенные в строки) с хэштрованием юникода. Создаем словарь
+и циклом добавляем к каждому ключу элемент из листа strs. Возвращаем values словаря
