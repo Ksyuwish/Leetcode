@@ -103,3 +103,65 @@ typically using all the original letters exactly once.
 
 Ключами являются листы (переведенные в строки) с хэштрованием юникода. Создаем словарь
 и циклом добавляем к каждому ключу элемент из листа strs. Возвращаем values словаря
+
+
+## Task 347: Top K Frequent Elements
+
+#### Description
+
+Given an integer array nums and an integer k, return the k most frequent elements. 
+You may return the answer in any order.
+
+#### Naive solution with sorting
+***Time complexity***  - O(n^2)
+***Memory complexity*** - O(n)
+
+Создаем словарь и считаем кол-во эл-ов из листа nums. Берем значения из словаря (частоты эл-ов),
+сортируем этот лист и берем к последних эл-ов. Если эл-ты одинаковые в листе, 
+то сетом удаляем дубли.
+Теперь по значениям будем брать ключи словаря, который мы создали изначально. Добавляем все ключи,
+ котор нам подходят и добавляем их в лист, и возаращаем этот лист в ответе
+
+
+#### Naive solution with sorting
+***Time complexity***  - O(nlog(n))
+***Memory complexity*** - O(n)
+
+Создаем словарь и считаем кол-во эл-ов из листа nums. Сортируем значения из словаря 
+по ключу реверсивно и вызываем по первому ключу получившийся лист
+
+#### Optimal solution Using Bucket Sort
+***Time complexity***  - O(n)
+***Memory complexity*** - O(n)
+
+Создать словарь и считаем кол-во эл-ов из листа nums. Далее создаем корзинки с листами длины 
+len(nums) , где кол-во корзинок - ключ (0, 1, 2...len(nums)), значения - 
+сами эл-ты из nums. Начать искать k эл-ов с конца корзинок до тех пор пока длина листа из корзины 
+не станет равна k.
+
+## Task 128: Longest Consecutive Sequence
+
+#### Description
+
+Given an unsorted array of integers nums, return the length of the longest consecutive 
+elements sequence.
+
+#### Naive solution with sorting
+***Time complexity***  - O(nlog(n))
+***Memory complexity*** - O(n)
+
+Сортируем лист nums, избавляем от дублей превращая в сет. 
+Далее идем по каждому эл-ту листа и сравниваем эл-т `nums[i+1]` и `nums[i]` если разница =1 
+(остаемся в рамках последовательности), увеличиваем счетчик n на 1 и увеличиваем
+счетчик max_n = max(max_n, n)). Если выходим из последовательности, 
+то снова начинаем считать с длины n=1
+
+#### Optimal solution 
+***Time complexity***  - O(n)
+***Memory complexity*** - O(n)
+
+Схлопываем дубли используя set. Проверяем у каждого эл-та наличие соседа слева. 
+Если соседа нет, то длина = 1.
+ Далее мы переходим к кейсам, когда есть сосед справа, т.е пока эл-т+ length есть в нашем сете, 
+мы ищем максимум между длиной и самой длинной последовательностью: 
+`longest = max(length, longest)`
