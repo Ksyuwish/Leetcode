@@ -86,3 +86,34 @@ Notice that the solution set must not contain duplicate triplets.
 предыдущие шаги до тех пор, пока не найдем сумму равную 0 . 
 Тогда добавляем лист [a, nums[l], nums[r]]. То есть при данном алгоритме и пробегаем наш лист 
 с двух сторон до середины.
+
+
+
+## Task 11: Container With Most Water
+
+#### Description
+
+You are given an integer array height of length n. There are n vertical lines drawn such 
+that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+
+Find two lines that together with the x-axis form a container, such that the container contains 
+the most water.
+
+Return the maximum amount of water a container can store.
+
+Notice that you may not slant the container.
+
+#### Optimal solution c использованием двух указателей
+
+***Time complexity*** - O(n) 
+***Memory complexity*** -  O(1) - т.к. хранение переменных не занимает память
+
+Двигаемся по листу с двух концов: слева и справа до тех пор, пока l<r 
+(пока указатели не пересеклись).
+Обязательно заводим счетчик `s_max = 0`. Этот счетчик нужен для того, чтобы искать 
+максимальную площадь области (на каждой итерации ищем максимум между s_max и рассчитанной 
+текущей площадью s). s рассчитываем как `s = min(height[l], height[r]) * (r-l)`
+(разность между индексами, умноженное на минимальное значение из листа (двух указателей)). 
+Если `height[l] < height[r]`, то сдвигаем указатель слева, в остальных случаях - справа 
+(так как нам важно взять наибольшую высоту столбца). 
+В итоге функция возвращает максимальное значение нашего счетчика s_max.
