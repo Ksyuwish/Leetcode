@@ -40,3 +40,31 @@ without repeating characters.
 до тех пор, пока снова не попадем в цикл while и пока не увидим повторяющийся эл-т. Там же 
 обновляем исторический максимум длины подстроки, если он оказался выше текущего историч максимума 
 (r-l+1). В ф-ии возвращаем исторический максимум самой длинной подстроки.
+
+
+## Task 424: Longest Repeating Character Replacement
+
+#### Description
+
+You are given a string s and an integer k. You can choose any character of the string 
+and change it to any other uppercase English character. You can perform this operation at most 
+k times.
+
+Return the length of the longest substring containing the same letter you can get after 
+performing the above operations.
+
+
+#### Optimal solution
+***Time complexity***  - O(2n) т.к. 2 указателя -> O(n)
+***Memory complexity*** - O(26n) тк 26 букв-> O(n)
+
+Создаем словарь для хранения кол-ва букв, переменную для историч максимума длины строки 
+и левый указатель. Идем циклом по строке используя индексы в качестве правого указателя. 
+добавляем в словарь букву если буквы нет, и увеличиваем кол-во на 1 если буква есть. 
+Прописываем цикл while с условием:
+длина окна (l-r+1) - наиболее часто встречающийся эл-т (max(count.values))
+= кол-во букв, которые нам нужно заменить > k (разрешенные замены). 
+Пока выполняется это условие, мы вычитаем из словаря 1 у того эл-та, на котором сейчас 
+стоит левый указатель и прибавляем 1 к левому указателю, чтобы сдвинуть указатель вправо. 
+Далее находим максимум между историческим максимумом и длиной окна (l-r+1).
+Возвращаем в ответе исторический максимум.
