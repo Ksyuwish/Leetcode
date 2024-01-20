@@ -68,3 +68,23 @@ performing the above operations.
 стоит левый указатель и прибавляем 1 к левому указателю, чтобы сдвинуть указатель вправо. 
 Далее находим максимум между историческим максимумом и длиной окна (l-r+1).
 Возвращаем в ответе исторический максимум.
+
+
+## Task 567: Permutation In String 
+
+#### Description
+
+Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
+
+In other words, return true if one of s1's permutations is the substring of s2.
+
+
+#### Optimal solution
+***Time complexity***  - O(26)+O(n) -> O(n)
+***Memory complexity*** - O(n)
+
+Необходимо создать счетчик matches. Считаем кол-во букв в s1, и в s2 на каждой итерации 
+рассматриваем столько кол-во букв, ск-ко len(s1). Считаем кол-во каждой буквы в s2. 
+Сравниваем с кол-ом каждой буквы в s1. Считаем разницу:
+26 - [кол-во букв, которые различаются в обоих строках]. Обновляем счетчик. 
+Если matches == 26 возвращаем True, иначе - False.
