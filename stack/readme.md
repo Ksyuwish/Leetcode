@@ -58,3 +58,54 @@ Note that:
 "/" обязательно делаем это через int(b/a) чтобы округлить до меньшего значения. 
 Возвращаем в ответе stack[0].
 Суть Polish notation в том, чтобы применять операторы +/-/*// к двум соседствующим эл-ам.
+
+
+## Task 22: Generate Parentheses 
+
+#### Description
+
+Given n pairs of parentheses, write a function to generate all combinations of well-formed 
+parentheses.
+
+***Time complexity*** - O(n) 
+***Memory complexity*** -  O(n) 
+
+1. Мы можем добавить "(" если кол-во "("<n
+
+2. Мы можем добавить ")" если кол-во ")" < кол-во "("
+
+3. Когда кол-во "(" == кол-во ")" == n получаем окончательный результат
+
+В задаче используется рекурсия.Создаем ф-ю с несколькими условиями if:
+
+* Если кол-во "(" == кол-во ")" == n Добавляем в пустой лист res строку с последовательностью скобок 
+* Если кол-во "("<n добавляем в стек "(" , применяем снова эту же ф-ю с openN+1 и попаем стек 
+* Если кол-во ")" < кол-во "(" добавляем в стек ")" применяем снова эту же ф-ю с closedN+1 
+* и попаем стек
+
+
+
+## Task 739: Daily Temperatures 
+
+#### Description
+
+
+Given an array of integers temperatures represents the daily temperatures, 
+return an array answer such that answer[i] is the number of days you have to wait after the 
+ith day to get a warmer temperature. If there is no future day for which this is possible, 
+keep answer[i] == 0 instead.
+
+
+#### Optimal solution
+
+***Time complexity*** - O(n)
+***Memory complexity*** -  O(n) 
+
+Создаем 2 листа: res с нулями (той же длины, что и `len(temperatures)`) 
+и stack (pair: [temp, index]). Проходимся по индексам и значениям листа temperatures. 
+Прописывем цикл while: пока стек не пустой и 
+текущее значение температуры > предыдыдущей температуры из стека (тк пара,берем 0-ой эл-т).
+Сохраняем попнутые значения из стека в переменные stackT, stackInd. 
+В лист res на место индекса stackInd добавляем разницу между текущим индексом 
+и попнутым идексом из стека stackInd. В конце цикла for аппедним в стек текущее значение 
+температуры из temperatures и текущий индекс. В ответе возвразаем лист `res`.
