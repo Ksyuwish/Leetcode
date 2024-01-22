@@ -22,11 +22,11 @@ class Solution:
         for r in range(len(s)):
             count[s[r]] = 1 + count.get(s[r], 0) #на каждой итерации увеличиваем кол-во букв в словаре
 
-            while l-r+1-max(count.values()) > k: #l-r+1(window length) - max(count.values) more frequent element
-                # = кол-во букв, которые нам нужно заменить
+            while r-l+1-max(count.values()) > k: #r-l+1(window length) - max(count.values) more frequent element = кол-во букв, которые нам нужно заменить
                 count[s[l]] -= 1
                 l +=1
 
-            max_length = max(max_length, l-r+1)
+            max_length = max(max_length, r-l+1)
 
         return max_length
+
