@@ -43,3 +43,33 @@ class Solution:
             l += 1
         return matches == 26
 
+
+# Optimal solution проще
+# Time complexity - O(26n)
+# Memory complexity - O(n)
+#Idea: Генерим 2 листа s1_count и s2_count состоящие из 26 0 и в каждый индекс из этих строк мы присвоим цифру - кол-во
+# раз, которое эта буква встречается. Причем для s2_count мы рассматриваем столько же букв, сколько в s1.
+# Ставим левый указатель на 0, а правым будем скользить по s2 (range(len(s1), len(s2))). Если s1_count == s2_count
+# возвращаем True. Из s2_count[ord(s2[l]) - ord("a")] вычитаем 1 (чтобы уменьшить кол-во букв на левом указателе,
+# тк мы сдвинули указатель) и к s2_count[ord(s2[r]) - ord("a")] прибавляем 1, тк правым указателем мы проскользили
+# и добавили новую букву. В конце двигаем указатель l (l += 1). В итоге возвращаем s1_count == s2_count
+# чтобы согласно этому выражению было True или False
+
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        if len(s1) > len(s2):
+            return False
+        s1_count = [0] * 26
+        s2_count = [0] * 26
+        for i in range(len(s1)):
+            s1_count[ord(s1[i]) - ord("a")] += 1
+            s2_count[ord(s2[i]) - ord("a")] += 1
+        l = 0
+        for r in range(len(s1), len(s2)): # O(n)
+            if s1_count == s2_count: # O(26)
+                return True
+            s2_count[ord(s2[l]) - ord("a")] -= 1
+            s2_count[ord(s2[r]) - ord("a")] += 1
+            l += 1
+
+        return s1_count == s2_count #adc vs dcda (чтобы сделать проверку на правом крае)
